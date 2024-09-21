@@ -1,6 +1,7 @@
 from pylogix import PLC
 with PLC() as comm:
     comm.IPAddress = '192.168.2.110'
+     comm.ProcessorSlot = 2  # 如果你的PLC在槽位1
     # print(comm.GetModuleProperties(0))                            #获取设备信息
     # print(comm.GetPLCTime())                       #获取PLC时间
     # print(comm.GetProgramsList())                      #获取程序列表
