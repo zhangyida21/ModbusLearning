@@ -338,15 +338,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 [self.textEdit_8.toPlainText(), safe_int(self.textEdit_14.toPlainText())]  # Tag 4
             ]
 
-            write_data = [data for data in write_data if all(data) and isinstance(data[0], str)]
+            # write_data = [data for data in write_data if all(data) and isinstance(data[0], str)]
 
-
-
+            write_data = [data for data in write_data if data[0] and isinstance(data[0], str)]
 
             # Start communication with the PLC
             with PLC() as comm:
                 comm.IPAddress = self.textEdit_9.toPlainText()
-                comm.ProcessorSlot = int(self.textEdit_10.toPlainText())
+                # comm.ProcessorSlot = int(self.textEdit_10.toPlainText())
 
                 # Write all data at once
                 write_results = comm.Write(write_data)
@@ -380,7 +379,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 with PLC() as comm:
                     comm.IPAddress = self.textEdit_9.toPlainText()
-                    comm.ProcessorSlot = int(self.textEdit_10.toPlainText())
+                    # comm.ProcessorSlot = int(self.textEdit_10.toPlainText())
 
                     # Read all tags at once
                     responses = comm.Read(tagList)
